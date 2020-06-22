@@ -11,16 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.restservice3.models.Account;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
-
-
 
 @RestController
 public class AccountRestController {
 
   @GetMapping(value="/accounts")
   public List<Account> getAccounts() {
+      //TODO: process GET all request
       List<Account> accountList = new ArrayList<>();
       accountList.add(new Account(1L, "title1", "description1"));
       accountList.add(new Account(2L, "title2", "description2"));
@@ -29,6 +27,7 @@ public class AccountRestController {
   
   @GetMapping(value="/accounts/{accountId}")
   public Account getAccountById(@PathVariable Long accountId) {
+      //TODO: process GET by id request
       return new Account(accountId, "Title" + accountId, "description"+accountId);
   }
   
