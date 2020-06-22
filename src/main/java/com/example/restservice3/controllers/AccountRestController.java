@@ -1,8 +1,10 @@
 package com.example.restservice3.controllers;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -33,9 +35,21 @@ public class AccountRestController {
   @PostMapping(value="/accounts")
   public Account addAccount(@RequestBody Account account) {
       //TODO: process POST request
-      
       return account;
   }
   
+  @PutMapping(value="accounts/{accountId}")
+  public Account updateAccount(@PathVariable Long accountId, @RequestBody Account account) {
+      //TODO: process PUT request
+      if(account.getId() != accountId) {
+        return null;
+      }
+      return account;
+  }
   
+  @DeleteMapping(value="accounts/{accountId}")
+  public Long deleteAccount(@PathVariable Long accountId) {
+      //TODO: process DELETE request
+      return accountId;
+  }
 }
