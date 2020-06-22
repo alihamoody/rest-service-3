@@ -2,6 +2,7 @@ package com.example.restservice3.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import java.util.List;
 
 import com.example.restservice3.models.Account;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @RestController
@@ -25,6 +28,13 @@ public class AccountRestController {
   @GetMapping(value="/accounts/{accountId}")
   public Account getAccountById(@PathVariable Long accountId) {
       return new Account(accountId, "Title" + accountId, "description"+accountId);
+  }
+  
+  @PostMapping(value="/accounts")
+  public Account addAccount(@RequestBody Account account) {
+      //TODO: process POST request
+      
+      return account;
   }
   
   
