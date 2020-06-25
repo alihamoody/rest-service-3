@@ -67,9 +67,13 @@ public class AccountRestController {
     }
   }
   
-  // @DeleteMapping(value="/{accountId}")
-  // public Long deleteAccount(@PathVariable Long accountId) {
-  //     //TODO: process DELETE request
-  //     return accountId;
-  // }
+  @DeleteMapping(value="/{accountId}")
+  public String deleteAccount(@PathVariable Long accountId) {
+    try {
+    accountRepository.deleteById(accountId);
+    return "Deleted";
+    } catch (Exception e) {
+      return "Error. Unable to delete.";
+    }
+  }
 }
