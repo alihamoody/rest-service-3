@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 import com.example.restservice3.models.Account;
 import com.example.restservice3.repositories.AccountRepository;
 
@@ -46,11 +48,10 @@ public class AccountRestController {
     return "Saved";
   }
 
-  // @GetMapping(value="/{accountId}")
-  // public Account getAccountById(@PathVariable Long accountId) {
-  //     //TODO: process GET by id request
-  //     return new Account(accountId, "Title" + accountId, "description"+accountId);
-  // }
+  @GetMapping(value="/{accountId}")
+  public Optional<Account> getAccountById(@PathVariable Long accountId) {
+    return accountRepository.findById(accountId);
+  }
   
   // @PutMapping(value="/{accountId}")
   // public Account updateAccount(@PathVariable Long accountId, @RequestBody Account account) {
