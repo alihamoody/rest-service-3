@@ -39,8 +39,10 @@ public class AccountRestController {
   
   @PostMapping(value="")
   public @ResponseBody String addNewAccount(@RequestBody Account account) {
-    Account newAccount = new Account(22L, "title-22", "description-22");
+    Account newAccount = new Account(account.getTitle(), account.getDescription());
+    // System.out.println(newAccount.getId());
     accountRepository.save(newAccount);
+    // System.out.println(newAccount.getId());
     return "Saved";
   }
 

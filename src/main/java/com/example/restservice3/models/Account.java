@@ -16,8 +16,7 @@ public class Account {
 
   public Account() {}
   
-  public Account(Long id, String title, String description) {
-    this.id = id;
+  public Account( String title, String description) {
     this.title = title;
     this.description = description;
   }
