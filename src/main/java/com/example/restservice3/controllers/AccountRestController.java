@@ -29,38 +29,39 @@ public class AccountRestController {
   // GET all accounts
   @GetMapping(value="")
   public @ResponseBody Iterable<Account> getAllAccounts() {
-      return accountRepository.findAll();
+    return accountRepository.findAll();
 
-      // List<Account> accountList = new ArrayList<>();
-      // accountList.add(new Account(1L, "title1", "description1"));
-      // accountList.add(new Account(2L, "title2", "description2"));
-      // return accountList;
+    // List<Account> accountList = new ArrayList<>();
+    // accountList.add(new Account(1L, "title1", "description1"));
+    // accountList.add(new Account(2L, "title2", "description2"));
+    // return accountList;
   }  
   
-  @GetMapping(value="/{accountId}")
-  public Account getAccountById(@PathVariable Long accountId) {
-      //TODO: process GET by id request
-      return new Account(accountId, "Title" + accountId, "description"+accountId);
-  }
-  
   @PostMapping(value="")
-  public Account addAccount(@RequestBody Account account) {
-      //TODO: process POST request
-      return account;
+  public @ResponseBody String addNewAccount(@RequestBody Account account) {
+    Account newAccount = new Account(22L, "title-22", "description-22");
+    accountRepository.save(newAccount);
+    return "Saved";
   }
+
+  // @GetMapping(value="/{accountId}")
+  // public Account getAccountById(@PathVariable Long accountId) {
+  //     //TODO: process GET by id request
+  //     return new Account(accountId, "Title" + accountId, "description"+accountId);
+  // }
   
-  @PutMapping(value="/{accountId}")
-  public Account updateAccount(@PathVariable Long accountId, @RequestBody Account account) {
-      //TODO: process PUT request
-      if(account.getId() != accountId) {
-        return null;
-      }
-      return account;
-  }
+  // @PutMapping(value="/{accountId}")
+  // public Account updateAccount(@PathVariable Long accountId, @RequestBody Account account) {
+  //     //TODO: process PUT request
+  //     if(account.getId() != accountId) {
+  //       return null;
+  //     }
+  //     return account;
+  // }
   
-  @DeleteMapping(value="/{accountId}")
-  public Long deleteAccount(@PathVariable Long accountId) {
-      //TODO: process DELETE request
-      return accountId;
-  }
+  // @DeleteMapping(value="/{accountId}")
+  // public Long deleteAccount(@PathVariable Long accountId) {
+  //     //TODO: process DELETE request
+  //     return accountId;
+  // }
 }

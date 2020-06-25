@@ -14,6 +14,8 @@ public class Account {
   private String title;
   private String description; 
 
+  public Account() {}
+  
   public Account(Long id, String title, String description) {
     this.id = id;
     this.title = title;
