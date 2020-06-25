@@ -32,11 +32,6 @@ public class AccountRestController {
   @GetMapping(value="")
   public @ResponseBody Iterable<Account> getAllAccounts() {
     return accountRepository.findAll();
-
-    // List<Account> accountList = new ArrayList<>();
-    // accountList.add(new Account(1L, "title1", "description1"));
-    // accountList.add(new Account(2L, "title2", "description2"));
-    // return accountList;
   }  
   
   @PostMapping(value="")
@@ -60,7 +55,6 @@ public class AccountRestController {
       Account accountRecord = dbRecord.get();
       accountRecord.updateAccount(account);
       accountRepository.save(accountRecord);
-
       return "Updated";
     } else {
       return "Not found";
