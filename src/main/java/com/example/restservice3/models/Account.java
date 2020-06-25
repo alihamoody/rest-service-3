@@ -21,6 +21,12 @@ public class Account {
     this.description = description;
   }
   
+
+  public void updateAccount(Account newData) {
+    this.title = newData.getTitle();
+    this.description = newData.getDescription();
+  }
+
   public Long getId() {
     return id;
   }

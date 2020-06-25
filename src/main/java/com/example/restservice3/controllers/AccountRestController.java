@@ -53,14 +53,19 @@ public class AccountRestController {
     return accountRepository.findById(accountId);
   }
   
-  // @PutMapping(value="/{accountId}")
-  // public Account updateAccount(@PathVariable Long accountId, @RequestBody Account account) {
-  //     //TODO: process PUT request
-  //     if(account.getId() != accountId) {
-  //       return null;
-  //     }
-  //     return account;
-  // }
+  @PutMapping(value="/{accountId}")
+  public String updateAccount(@PathVariable Long accountId, @RequestBody Account account) {
+    Optional<Account> dbRecord = accountRepository.findById(accountId);
+    if(dbRecord.isPresent()) {
+      Account accountRecord = dbRecord.get();
+      accountRecord.updateAccount(account);
+      accountRepository.save(accountRecord);
+
+      return "Updated";
+    } else {
+      return "Not found";
+    }
+  }
   
   // @DeleteMapping(value="/{accountId}")
   // public Long deleteAccount(@PathVariable Long accountId) {
