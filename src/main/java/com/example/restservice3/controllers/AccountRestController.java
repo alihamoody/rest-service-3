@@ -1,5 +1,6 @@
 package com.example.restservice3.controllers;
 
+import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import com.example.restservice3.repositories.AccountRepository;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @RestController
@@ -30,8 +32,11 @@ public class AccountRestController {
 
   // GET all accounts
   @GetMapping(value="")
-  public @ResponseBody Iterable<Account> getAllAccounts() {
-    return accountRepository.findAll();
+  public @ResponseBody Iterable<Account> getAllAccounts(@RequestParam(defaultValue = "") String title  ) {
+    if(title == "")
+      return accountRepository.findAll();
+    else
+      return accountRepository.findByTitleContaining(title);
   }  
   
   @PostMapping(value="")
