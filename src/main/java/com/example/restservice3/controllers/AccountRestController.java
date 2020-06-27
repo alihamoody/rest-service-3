@@ -36,8 +36,8 @@ public class AccountRestController {
     @RequestParam(defaultValue = "") String title,
     @RequestParam(defaultValue = "") String titleend,
     @RequestParam(defaultValue = "") String titlestart,
-    @RequestParam(defaultValue = "") String special  ) {
-    if(!special.isBlank()) {
+    @RequestParam(required = false) Long special) {
+    if(special != null) {
       return accountRepository.findSpecial(special);
     }
     if(!title.isBlank()) {
@@ -55,7 +55,11 @@ public class AccountRestController {
   
   @PostMapping(value="")
   public @ResponseBody String addNewAccount(@RequestBody Account account) {
-    Account newAccount = new Account(account.getTitle(), account.getDescription());
+    Account newAccount = new Account(
+      account.getTitle(), 
+      account.getDescription(), 
+      account.getPersonId()
+    );
     // System.out.println(newAccount.getId());
     accountRepository.save(newAccount);
     // System.out.println(newAccount.getId());

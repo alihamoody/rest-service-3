@@ -13,7 +13,7 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
   public Iterable<Account> findByTitleStartsWith(String in);
   public Iterable<Account> findByTitleEndsWith(String in);
 
-  @Query("select a from Account a where a.description like %?1%")
-  public Iterable<Account> findSpecial(String chars);
+  @Query("select a , p from Account a left outer join Person p on a.personId = p.id where a.id = ?1")
+  public Iterable<Account> findSpecial(Long id);
 
 }
