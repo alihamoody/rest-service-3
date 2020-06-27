@@ -32,11 +32,25 @@ public class AccountRestController {
 
   // GET all accounts
   @GetMapping(value="")
-  public @ResponseBody Iterable<Account> getAllAccounts(@RequestParam(defaultValue = "") String title  ) {
-    if(title == "")
-      return accountRepository.findAll();
-    else
+  public @ResponseBody Iterable<Account> getAllAccounts(
+    @RequestParam(defaultValue = "") String title,
+    @RequestParam(defaultValue = "") String titleend,
+    @RequestParam(defaultValue = "") String titlestart,
+    @RequestParam(defaultValue = "") String special  ) {
+    if(!special.isBlank()) {
+      return accountRepository.findSpecial(special);
+    }
+    if(!title.isBlank()) {
       return accountRepository.findByTitleContaining(title);
+    }
+    if(!titleend.isBlank()) {
+      return accountRepository.findByTitleEndsWith(titleend);
+    }
+    if(!titlestart.isBlank()) {
+      return accountRepository.findByTitleStartsWith(titlestart);
+    }
+
+    return accountRepository.findAll();
   }  
   
   @PostMapping(value="")
