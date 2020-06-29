@@ -9,9 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class HealthRestController {
 
   @GetMapping(value="/health")
-  public String getMethodName() {
+  public String getHealth() {
       return "Service is up and running. " + Instant.now().toString();
   }
+
+  @GetMapping(value="/hello")
+  public String getHello() {
+      return "Hello World!";
+  }
+
 
 
   
