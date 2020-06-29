@@ -57,6 +57,18 @@ class RestService3ApplicationTests {
 		.andExpect(MockMvcResultMatchers.jsonPath("$[0].title").value("Title2"));
 	}
 
+	@Test
+	public void getAccountByIdTest() throws Exception {
+		mockMvc.perform(
+			get("/accounts/2")
+			.accept(MediaType.APPLICATION_JSON)
+			)
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(MockMvcResultMatchers.jsonPath("$[*]").exists())
+		.andExpect(MockMvcResultMatchers.jsonPath("$.id").value(2));
+	}
+
 	// @Test
 	// public void shouldCreateNewAccount() throws Exception {
 	// 	this.mockMvc.perform(post("/accounts").content(MediaType.APPLICATION_JSON_VALUE).content(
