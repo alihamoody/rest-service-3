@@ -93,4 +93,14 @@ class RestService3ApplicationTests {
 		.andExpect(status().isOk())
 		.andExpect(content().string(containsString("Updated")));
 	}
+
+	// @Test
+	// public void shouldDeleteAccount() throws Exception {
+	// 	this.mockMvc.perform(
+	// 		delete("/accounts/1")
+	// 	)
+	// 	.andDo(print())
+	// 	.andExpect(status().isOk())
+	// 	.andExpect(content().string(containsString("Deleted")));
+	// }
 }
