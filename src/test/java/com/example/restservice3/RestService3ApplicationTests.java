@@ -3,6 +3,8 @@ package com.example.restservice3;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -79,5 +81,16 @@ class RestService3ApplicationTests {
 		.andDo(print())
 		.andExpect(status().isOk())
 		.andExpect(content().string(containsString("Saved")));
+	}
+
+	@Test
+	public void shouldUpdateExistingAccount() throws Exception {
+		this.mockMvc.perform(
+			put("/accounts/1")
+			.contentType(MediaType.APPLICATION_JSON_VALUE)
+			.content(new ObjectMapper().writeValueAsString(new Account("Title 1T", "Desc 1T", 1L))))
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(content().string(containsString("Updated")));
 	}
 }
