@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.example.restservice3.models.Account;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.hamcrest.Matchers.containsString;
 
@@ -69,12 +70,14 @@ class RestService3ApplicationTests {
 		.andExpect(MockMvcResultMatchers.jsonPath("$.id").value(2));
 	}
 
-	// @Test
-	// public void shouldCreateNewAccount() throws Exception {
-	// 	this.mockMvc.perform(post("/accounts").content(MediaType.APPLICATION_JSON_VALUE).content(
-	// 		"{\"personId\" : 1,\"title\": \"Title Test\",\"description\": \"Desc Test\"}"))
-	// 	.andDo(print())
-	// 	.andExpect(status().isOk())
-	// 	.andExpect(content().string(containsString("Saved")));
-	// }
+	@Test
+	public void shouldCreateNewAccount() throws Exception {
+		this.mockMvc.perform(
+			post("/accounts")
+			.contentType(MediaType.APPLICATION_JSON_VALUE)
+			.content(new ObjectMapper().writeValueAsString(new Account("Title Test", "Description Test", 1L))))
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(content().string(containsString("Saved")));
+	}
 }
