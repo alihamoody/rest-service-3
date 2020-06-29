@@ -1,7 +1,8 @@
 pipeline {
-    agent {
-        docker { image 'node:7-alpine' }
-    }
+        docker {
+            image 'maven:3-alpine'
+            args '-v $HOME/.m2:/root/.m2'
+        }
     stages {
         stage('Example Stage') {
             steps {
@@ -11,6 +12,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh 'mvn --version'
+                sh './mvnw clean package'
             }
         }
         stage('Test') {
