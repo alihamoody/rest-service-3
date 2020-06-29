@@ -15,7 +15,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 sh 'mvn --version'
-                sh './mvnw clean package'
+                sh 'unset MAVEN_CONFIG && ./mvnw clean package'
             }
         }
         stage('Test') {
