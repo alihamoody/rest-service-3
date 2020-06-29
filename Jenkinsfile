@@ -14,6 +14,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh 'java --version'
                 sh 'mvn --version'
                 sh 'unset MAVEN_CONFIG && ./mvnw clean package'
             }
