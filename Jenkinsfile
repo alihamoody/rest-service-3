@@ -21,7 +21,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh './mvnw test'
+                sh 'unset MAVEN_CONFIG && ./mvnw test'
             }
         }
         stage('Deploy') {
