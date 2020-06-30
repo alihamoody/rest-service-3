@@ -27,6 +27,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                sh 'docker build -t bootcamp-0-rest-service .'
+                sh 'docker run -p 8081:8081 bootcamp-0-rest-service'
+
             }
         }
     }
