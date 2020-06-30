@@ -27,9 +27,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                // TODO Take down existing instance if running
-                sh 'docker build -t bootcamp-0-rest-service .'
-                sh 'docker run -p 8081:8081 --name bootcamp-rest-service bootcamp-0-rest-service'
+                // TODO 
+                //  TODO Take down existing instance if running, then build a new Docker image
+                // sh 'docker build -t bootcamp-0-rest-service .'
+                // sh 'docker run -p 8081:8081 --name bootcamp-rest-service bootcamp-0-rest-service'
 
             }
         }
